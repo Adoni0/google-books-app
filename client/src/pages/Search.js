@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import API from '../utils/API';
 import Jumbotron from '../components/Jumbotron';
 import Navbar from '../components/Navbar';
-import BooksLayout from '../components/BooksLayout';
+import BooksLayout from '../components/SearchLayout';
 import Form from '../components/Form';
 import Save from './Save';
 // import { response } from "express";
@@ -55,7 +55,11 @@ class Books extends Component {
 
   render() {
     return (
-     
+      <>
+     <Navbar />
+     <Jumbotron />
+     <BooksLayout />
+     </>
     )
   }
 }
