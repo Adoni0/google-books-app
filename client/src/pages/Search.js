@@ -21,6 +21,7 @@ class Search extends Component {
     image: ""
   };
 
+
   handleInputChange = event => {
     // const { name, value } = event.target;
     // this.setState({ [name]: value });
@@ -42,7 +43,7 @@ class Search extends Component {
 
   searchBooks = () => {
     API.getGoogle()
-    .then(data => this.setState({ books: data }))
+      .then(data => this.setState({ books: data }))
   }
 
   render() {
@@ -50,24 +51,29 @@ class Search extends Component {
       <>
         <Navbar />
         <Jumbotron />
-        <Form 
-        onChange={this.handleInputChange}
-        value={this.state.value}
-        submit={this.searchBooks}
+        <Form
+          onChange={this.handleInputChange}
+          value={this.state.value}
+          submit={this.searchBooks}
         />
 
         {this.state.books.length ? (
           <List>
-          {this.state.books.map(book => {
-           <ListItem key={book._id}>
-             
-            <ViewBtn /> 
-            <SaveBtn />
-           </ListItem>
-         })} 
-       </List>
-        ) : (<h3>No Results to Display</h3>)}
-        
+            {this.state.books.map(book => (
+              <ListItem key={book._id}
+                id={book._id}>
+                <strong>
+                  {book.title} by {book.author}
+                </strong>
+                <ViewBtn />
+                <SaveBtn />
+              </ListItem>
+            ))}
+          </List>
+        ) : (
+            <h3>No Results to Display</h3>
+          )}
+
       </>
     )
   }

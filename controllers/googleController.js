@@ -16,5 +16,6 @@ module.exports = {
                 result.filter(apiBook =>
                     dbBooks.every(dbBook => dbBook.googleId.toString() !== apiBook.id))))
             .then(allBooks => res.json(allBooks))
-    }
+    },
+
 }
