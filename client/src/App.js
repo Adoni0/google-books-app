@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import Books from './pages/Books';
 import Save from './pages/Save';
 import Search from './pages/Search';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';

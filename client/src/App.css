@@ -1,24 +1,39 @@
-.App {
-  text-align: center;
+
+/* list component ==============================================================================*/
+
+.list-overflow-container {
+  max-height: 545px;
+  border: 1px #DDDDDD solid;
+  border-radius: 4px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-top: 20px
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.list-overflow-container ul {
+  margin: 0;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.list-overflow-container li {
+  border-radius: 0px;
+  border-left: none;
+  border-right: none;
 }
 
-.App-intro {
-  font-size: large;
+.list-overflow-container li * {
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.list-overflow-container li a {
+  color: #2A878C;
 }
+
+.list-overflow-container li:first-child {
+  border-top: none;
+}
+
+.list-overflow-container li:last-child {
+  border-bottom: none;
+}
+/* End of list component ==============================================================================*/
+
