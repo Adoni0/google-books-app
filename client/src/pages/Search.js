@@ -11,7 +11,7 @@ import Save from './Save';
 // import { response } from "express";
 
 class Search extends Component {
-  // Initialize this.state.books as an empty array
+
   state = {
     books: [],
     title: "",
@@ -21,31 +21,13 @@ class Search extends Component {
     image: ""
   };
 
-  // componentDidMount() {
-  //   this.loadBooks();
-  // }
-
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
-      .catch(err => console.log(err));
-  }
-
-  loadBooks = () => {
-    API.getBooks()
-      .then(res => this.setState({ books: res.data }))
-      .catch(err => console.log(err));
-    // googleController.findAll()
-    // .then(res => this.setState({ books: res.data }))
-    // .catch(err => console.log(err));
-  }
-
   handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+    // const { name, value } = event.target;
+    // this.setState({ [name]: value });
+    this.setState({ title: event.target.value });
   }
 
-  handleFormSubmit = event => {
+  handleSave = event => { //click handler on the savebtn component
     event.preventDefault();
 
     API.saveBook({
@@ -54,8 +36,13 @@ class Search extends Component {
       description: this.state.description,
       link: this.state.link,
       image: this.state.image
-    }).then(res => this.loadBooks());
+    }).then(res => console.log(res));
 
+  }
+
+  searchBooks = () => {
+    API.getGoogle()
+    .then(data => this.setState({ books: data }))
   }
 
   render() {
@@ -63,17 +50,24 @@ class Search extends Component {
       <>
         <Navbar />
         <Jumbotron />
-        <Form>
-          <SaveBtn />
-          <ViewBtn />
-        </Form>
-        <List>
-           {/* {this.state.books.map(book => {
-            <ListItem>
+        <Form 
+        onChange={this.handleInputChange}
+        value={this.state.value}
+        submit={this.searchBooks}
+        />
 
-            </ListItem>
-          })}  */}
-        </List>
+        {this.state.books.length ? (
+          <List>
+          {this.state.books.map(book => {
+           <ListItem key={book._id}>
+             
+            <ViewBtn /> 
+            <SaveBtn />
+           </ListItem>
+         })} 
+       </List>
+        ) : (<h3>No Results to Display</h3>)}
+        
       </>
     )
   }

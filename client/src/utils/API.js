@@ -6,6 +6,9 @@ export default {
   getBooks: function() {
     return axios.get('api/books');
   },
+  getGoogle: function(){
+    return axios.get('api/google');
+  },
   // Gets the book with the given id
   // getBook: function(id) {
   //   return axios.get("/api/books/" + id);

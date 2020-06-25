@@ -16,6 +16,19 @@ export default class Save extends Component {
         API.getBooks()
     }
 
+    deleteBook = id => { //move to save page
+        API.deleteBook(id)
+          .then(res => this.loadBooks())
+          .catch(err => console.log(err));
+      }
+
+      loadBooks = () => { //move to save page
+        API.getBooks()
+          .then(res => this.setState({ books: res.data }))
+          .catch(err => console.log(err));
+      }
+
+
     render() {
         return (
             <div>

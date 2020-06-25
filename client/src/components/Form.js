@@ -1,29 +1,30 @@
-import React, { Component } from 'react'
+import React from 'react';
 
-export default class Form extends Component {
-
-    formStyle = {
-        marginRight: 50,
-        marginLeft: 50
-    }
-
-    render() {
-        return (
-            <div>
-                <form style={this.formStyle}>
-                    <div className="form-group">
-                        <label for="exampleInputEmail1">Book Search</label>
-                        <input type="text" className="form-control" />
-                        <small id="emailHelp" className="form-text text-muted">
-                            Search any book in the Google Book database.
-            </small>
-                    </div>
-
-                    <button type="submit" className="btn btn-primary">
-                        Search
-          </button>
-                </form>
-            </div>
-        )
-    }
+const formStyle = {
+    marginRight: 50,
+    marginLeft: 50
 }
+
+export default function Form(props) {
+    return (
+        <div>
+            <form style={formStyle}>
+                <div className="form-group">
+                    <label for="exampleInputEmail1">Book Search</label>
+                    <input placeholder="Search by book title" type="text" className="form-control" {...props.value} />
+                    <small id="emailHelp" className="form-text text-muted">
+                        Search any book in the Google Book database.
+            </small>
+                </div>
+
+                <button onSubmit={props.submit} type="submit" className="btn btn-primary">
+                    Search
+          </button>
+            </form>
+        </div>
+
+    );
+}
+
+
+
