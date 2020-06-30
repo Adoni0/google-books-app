@@ -34,7 +34,10 @@ export default class Save extends Component {
             <div>
                 <Navbar />
                 <Jumbotron />
-                <SaveLayout>
+                <SaveLayout source={this.state.books.image}
+                author={this.state.books.author}
+                title={this.state.books.title}
+                description={this.state.books.description}>
                 <DeleteButton />
                 <ViewBtn />
                 </SaveLayout>

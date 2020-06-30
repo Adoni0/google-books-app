@@ -41,7 +41,8 @@ class Search extends Component {
 
   }
 
-  searchBooks = () => {
+  searchBooks = (event) => {
+    
     API.getGoogle()
       .then(data => this.setState({ books: data }))
   }
@@ -65,6 +66,7 @@ class Search extends Component {
                 <strong>
                   {book.title} by {book.author}
                 </strong>
+                {book.description}
                 <ViewBtn />
                 <SaveBtn />
               </ListItem>

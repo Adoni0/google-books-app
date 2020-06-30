@@ -1,25 +1,25 @@
 import React, { Component } from 'react'
 
-export default class SaveLayout extends Component {
-    render() {
+export default function SaveLayout (props) {
+
+    const style = {
+        marginLeft: 30,
+        marginRight: 30
+    }
+
+    // render() {
         return (
-            <div class="media">
-                <img src="..." class="align-self-center mr-3" alt="..." />
+            <div style={style} class="media">
+                <img src={props.source} class="align-self-center mr-3" alt="..." />
                 <div class="media-body">
-                    <h5 class="mt-0">Center-aligned media</h5>
+        <h5 class="mt-0">{props.title} by {props.author}</h5>
                     <p>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                        scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-                        vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                        vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        {props.description}
           </p>
-                    <p class="mb-0">
-                        Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu
-                        leo. Cum sociis natoque penatibus et magnis dis parturient montes,
-                        nascetur ridiculus mus.
-          </p>
+          <a href={props.link}>Link</a>
+        
                 </div>
             </div>
         )
-    }
+    // }
 }
