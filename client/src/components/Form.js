@@ -11,13 +11,13 @@ export default function Form(props) {
             <form style={formStyle}>
                 <div className="form-group">
                     <label for="exampleInputEmail1">Book Search</label>
-                    <input placeholder="Search by book title" type="text" className="form-control" {...props.value} />
+                    <input value={props.title} onChange={props.handleInputChange} placeholder="Search by book title" type="text" className="form-control" />
                     <small id="emailHelp" className="form-text text-muted">
                         Search any book in the Google Book database.
             </small>
                 </div>
 
-                <button onSubmit={props.submit} type="submit" className="btn btn-primary">
+                <button onClick={props.handleFormSubmit} type="submit" className="btn btn-primary">
                     Search
           </button>
             </form>

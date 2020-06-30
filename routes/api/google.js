@@ -1,10 +1,11 @@
-import { Router } from 'express';
-import googleController from '../../controllers/googleController';
+// import { Router } from 'express';
+var router = require('express').Router();
+const googleController = require('../../controllers/googleController');
 
-var router = Router();
+// var router = Router();
 
 // routes to /api/google
-router.route('/').get(googleController.findAll());
+router.route('/').get(googleController.findAll);
 
 
-export default router;
+module.exports = router;

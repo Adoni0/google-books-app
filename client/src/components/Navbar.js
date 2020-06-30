@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 export class Navbar extends Component {
 
@@ -18,10 +19,12 @@ export class Navbar extends Component {
   <div className="collapse navbar-collapse" id="navbarNavDropdown">
     <ul className="navbar-nav">
       <li className="nav-item active">
-        <a style={{color: 'red'}} className="nav-link" href="#">Search <span className="sr-only">(current)</span></a>
+        <a style={{color: 'red'}} className="nav-link" href="#">
+          <Link to="/">Search</Link><span className="sr-only">(current)</span></a>
       </li>
       <li className="nav-item">
-        <a style={{color: 'red'}} className="nav-link" href="#">Saved</a>
+        <a style={{color: 'red'}} className="nav-link" href="#">
+        <Link to="/books">Save</Link></a>
       </li>
       
     </ul>

@@ -28,8 +28,7 @@ class Search extends Component {
     this.setState({ title: event.target.value });
   }
 
-  handleSave = event => { //click handler on the savebtn component
-    event.preventDefault();
+  handleSave = id => { //click handler on the savebtn component
 
     API.saveBook({
       title: this.state.title,
@@ -41,10 +40,10 @@ class Search extends Component {
 
   }
 
-  searchBooks = (event) => {
+  searchBooks = () => {
     
-    API.getGoogle()
-      .then(data => this.setState({ books: data }))
+    API.getGoogle(this.state.title)
+      .then(data => this.setState({ books: data.data }))
   }
 
   render() {
@@ -53,20 +52,20 @@ class Search extends Component {
         <Navbar />
         <Jumbotron />
         <Form
-          onChange={this.handleInputChange}
-          value={this.state.value}
-          submit={this.searchBooks}
+          handleInputChange={this.handleInputChange}
+          title={this.state.title}
+          handleFormSubmit={this.searchBooks}
         />
 
         {this.state.books.length ? (
           <List>
             {this.state.books.map(book => (
-              <ListItem key={book._id}
-                id={book._id}>
+              <ListItem key={book.id}
+                id={book.id}>
                 <strong>
-                  {book.title} by {book.author}
+                  {book.volumeInfo.title} by {book.volumeInfo.authors}
                 </strong>
-                {book.description}
+                {book.volumeInfo.description}
                 <ViewBtn />
                 <SaveBtn />
               </ListItem>
