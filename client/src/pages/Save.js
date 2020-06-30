@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import SaveLayout from '../components/SaveLayout';
 import ViewBtn from '../components/ViewBtn';
 import DeleteButton from '../components/DeleteButton';
+import { List, ListItem } from '../components/List';
 import API from '../utils/API';
 
 export default class Save extends Component {
@@ -16,13 +17,13 @@ export default class Save extends Component {
         API.getBooks()
     }
 
-    deleteBook = id => { //move to save page
+    deleteBook = id => { 
         API.deleteBook(id)
           .then(res => this.loadBooks())
           .catch(err => console.log(err));
       }
 
-      loadBooks = () => { //move to save page
+      loadBooks = () => { 
         API.getBooks()
           .then(res => this.setState({ books: res.data }))
           .catch(err => console.log(err));
@@ -34,13 +35,30 @@ export default class Save extends Component {
             <div>
                 <Navbar />
                 <Jumbotron />
-                <SaveLayout source={this.state.books.image}
-                author={this.state.books.author}
-                title={this.state.books.title}
-                description={this.state.books.description}>
-                <DeleteButton />
+                {this.state.books.length ? (
+          <List>
+            {this.state.books.map(book => (
+              <ListItem key={book._id}
+                id={book._id}>
+                <strong>
+                  {book.title} by {book.author}
+                </strong>
+                <br/>
+                {book.description}
+                <br/>
+                {book.image}
+                <br/>
+                {book.link}
+
                 <ViewBtn />
-                </SaveLayout>
+                <DeleteButton deleteBook={this.deleteBook}/>
+              </ListItem>
+            ))}
+          </List>
+        ) : (
+            <h3>No Books Saved</h3>
+          )}
+                
                 
             </div>
         )

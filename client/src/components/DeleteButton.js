@@ -4,7 +4,7 @@ import React from "react";
 // That way we don't have to define them all individually
 function DeleteButton(props) {
   return (
-    <span style={{float: 'right'}} className="delete-btn" {...props} role="button" tabIndex="0">
+    <span style={{float: 'right'}} className="delete-btn" onClick={() => props.deleteBook(props.id)} role="button" tabIndex="0">
       Delete
     </span>
   );

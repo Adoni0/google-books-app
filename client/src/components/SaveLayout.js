@@ -12,11 +12,12 @@ export default function SaveLayout (props) {
             <div style={style} class="media">
                 <img src={props.source} class="align-self-center mr-3" alt="..." />
                 <div class="media-body">
-        <h5 class="mt-0">{props.title} by {props.author}</h5>
+        {/* <h5 class="mt-0">{props.title} by {props.author}</h5>
                     <p>
                         {props.description}
-          </p>
-          <a href={props.link}>Link</a>
+          </p> */}
+          {/* <a href={props.link}>Link</a> */}
+          {props.children}
         
                 </div>
             </div>
