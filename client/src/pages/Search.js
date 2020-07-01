@@ -3,22 +3,22 @@ import API from '../utils/API';
 import Jumbotron from '../components/Jumbotron';
 import Navbar from '../components/Navbar';
 import { List, ListItem } from '../components/List';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Form from '../components/Form';
 import SaveBtn from '../components/SaveBtn';
 import ViewBtn from '../components/ViewBtn';
-import Save from './Save';
+// import Save from './Save';
 // import { response } from "express";
 
 class Search extends Component {
 
   state = {
     books: [],
-    title: "",
-    author: "",
-    description: "",
-    link: "",
-    image: ""
+    title: ""
+    // author: "",
+    // description: "",
+    // link: "",
+    // image: ""
   };
 
 
@@ -31,19 +31,30 @@ class Search extends Component {
   handleSave = id => { //click handler on the savebtn component
 
     API.saveBook({
-      title: this.state.title,
-      author: this.state.author,
-      description: this.state.description,
-      link: this.state.link,
-      image: this.state.image
+      title: this.state.books.volumeInfo.title,
+      author: this.state.books.volumeInfo.author,
+      description: this.state.books.volumeInfo.description,
+      link: this.state.books.volumeInfo.infoLink,
+      image: this.state.books.volumeInfo.imageLinks.small,
+      googleId: this.state.books.id
     }).then(res => console.log(res));
 
   }
 
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    this.searchBooks();
+  }
+
   searchBooks = () => {
-    
+    console.log('test');
     API.getGoogle(this.state.title)
-      .then(data => this.setState({ books: data.data }))
+      .then(data => 
+        // this.setState({ books: data.data })
+        console.log(data)
+        )
+        .catch(err => console.log(err))
+
   }
 
   render() {
@@ -54,7 +65,7 @@ class Search extends Component {
         <Form
           handleInputChange={this.handleInputChange}
           title={this.state.title}
-          handleFormSubmit={this.searchBooks}
+          handleFormSubmit={this.handleFormSubmit}
         />
 
         {this.state.books.length ? (
@@ -67,7 +78,11 @@ class Search extends Component {
                 </strong>
                 {book.volumeInfo.description}
                 <ViewBtn />
-                <SaveBtn />
+                <SaveBtn
+                 key={book.id}
+                 id={book.id}
+                handleSave={this.handleSave}
+                />
               </ListItem>
             ))}
           </List>

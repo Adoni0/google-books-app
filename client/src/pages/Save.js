@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Jumbotron from '../components/Jumbotron';
 import Navbar from '../components/Navbar';
-import SaveLayout from '../components/SaveLayout';
 import ViewBtn from '../components/ViewBtn';
 import DeleteButton from '../components/DeleteButton';
 import { List, ListItem } from '../components/List';
@@ -13,21 +12,29 @@ export default class Save extends Component {
         books: []
     }
 
-    componentDidMount(){
+    componentDidMount() {
         API.getBooks()
+            .then(res => this.setState({ books: res.data }))
+            .catch(err => console.log(err));
     }
 
-    deleteBook = id => { 
+    deleteBook = id => {
         API.deleteBook(id)
-          .then(res => this.loadBooks())
-          .catch(err => console.log(err));
-      }
+            .then(res => this.loadBooks())
+            .catch(err => console.log(err));
+    }
 
-      loadBooks = () => { 
+    loadBooks = () => {
         API.getBooks()
-          .then(res => this.setState({ books: res.data }))
-          .catch(err => console.log(err));
-      }
+            .then(res => this.setState({ books: res.data }))
+            .catch(err => console.log(err));
+    }
+
+    viewBook = (id) => {
+        API.viewGoogle(this.state.books.id)
+        .then(data => console.log(data))
+
+    }
 
 
     render() {
@@ -36,30 +43,30 @@ export default class Save extends Component {
                 <Navbar />
                 <Jumbotron />
                 {this.state.books.length ? (
-          <List>
-            {this.state.books.map(book => (
-              <ListItem key={book._id}
-                id={book._id}>
-                <strong>
-                  {book.title} by {book.author}
-                </strong>
-                <br/>
-                {book.description}
-                <br/>
-                {book.image}
-                <br/>
-                {book.link}
+                    <List>
+                        {this.state.books.map(book => (
+                            <ListItem key={book._id}
+                                id={book._id}>
+                                <strong>
+                                    {book.title} by {book.author}
+                                </strong>
+                                <br />
+                                {book.description}
+                                <br />
+                                {book.image}
+                                <br />
+                                {book.link}
 
-                <ViewBtn />
-                <DeleteButton deleteBook={this.deleteBook}/>
-              </ListItem>
-            ))}
-          </List>
-        ) : (
-            <h3>No Books Saved</h3>
-          )}
-                
-                
+                                <ViewBtn viewBook={this.viewBook}/>
+                                <DeleteButton deleteBook={this.deleteBook} />
+                            </ListItem>
+                        ))}
+                    </List>
+                ) : (
+                        <h3>No Books Saved</h3>
+                    )}
+
+
             </div>
         )
     }

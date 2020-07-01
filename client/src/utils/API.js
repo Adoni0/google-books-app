@@ -1,5 +1,5 @@
 import axios from "axios";
-//GET https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=yourAPIKey
+//GET https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes
 
 export default {
   // Gets all books
@@ -11,10 +11,11 @@ export default {
       params: { q: q }
  });
   },
-  // Gets the book with the given id
-  // getBook: function(id) {
-  //   return axios.get("/api/books/" + id);
-  // },
+  viewGoogle: function(id){
+    return axios.get('api/google', {
+      body: id
+    })
+  },
   // Deletes the book with the given id
   deleteBook: function(id) {
     return axios.delete("/api/books/" + id);

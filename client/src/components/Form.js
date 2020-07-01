@@ -10,7 +10,7 @@ export default function Form(props) {
         <div>
             <form style={formStyle}>
                 <div className="form-group">
-                    <label for="exampleInputEmail1">Book Search</label>
+                    <label>Book Search</label>
                     <input value={props.title} onChange={props.handleInputChange} placeholder="Search by book title" type="text" className="form-control" />
                     <small id="emailHelp" className="form-text text-muted">
                         Search any book in the Google Book database.

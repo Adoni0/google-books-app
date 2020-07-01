@@ -5,7 +5,7 @@ import React from "react";
 
 function ViewBtn(props) {
   return (
-    <span style={{float: 'right'}} className="view-btn" {...props} role="button" tabIndex="0">
+    <span style={{float: 'right'}} onClick={() => props.viewBook(props.id)} className="view-btn" {...props} role="button" tabIndex="0">
       View
     </span>
   );
