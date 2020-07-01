@@ -28,21 +28,32 @@ class Search extends Component {
     this.setState({ title: event.target.value });
   }
 
-  handleSave = id => { //click handler on the savebtn component
+  // handleSave = event => {
+  //   event.preventDefault();
+  //   this.saveToDatabase();
+  // }
 
-    API.saveBook({
-      title: this.state.books.volumeInfo.title,
-      author: this.state.books.volumeInfo.authors,
-      description: this.state.books.volumeInfo.description,
-      link: this.state.books.volumeInfo.infoLink,
-      image: this.state.books.volumeInfo.imageLinks.smallThumbnail,
-      googleId: this.state.books.id
-    }).then(res => console.log(res));
+  handleSave = (id) => { //click handler on the savebtn component
+
+    this.state.books.forEach(book => {
+      if(id === book.id){
+        API.saveBook({
+          title: book.volumeInfo.title,
+          author: book.volumeInfo.authors,
+          description: book.volumeInfo.description,
+          link: book.volumeInfo.infoLink,
+          image: book.volumeInfo.imageLinks.smallThumbnail,
+          googleId: book.id
+        }).then(res => console.log(res));
+      }
+    })
+    
+    
 
   }
 
   handleFormSubmit = (event) => {
-    console.log('This function ran.');
+    // console.log('This function ran.');
     event.preventDefault();
     this.searchBooks();
   }
@@ -77,6 +88,7 @@ class Search extends Component {
                 <strong>
                   {book.volumeInfo.title} by {book.volumeInfo.authors}
                 </strong>
+                <img src={book.volumeInfo.imageLinks.smallThumbnail}></img>
                 {book.volumeInfo.description}
                 <ViewBtn />
                 <SaveBtn

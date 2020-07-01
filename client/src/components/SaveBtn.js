@@ -4,7 +4,7 @@ import React from "react";
 // That way we don't have to define them all individually
 function SaveBtn(props) {
   return (
-    <button style={{float: 'right'}} onClick={props.handleSave} className="save-btn" {...props}  tabIndex="0">
+    <button style={{float: 'right'}} onClick={() => props.handleSave(props.id)} className="butn" tabIndex="0">
       Save
     </button>
   );
