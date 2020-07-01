@@ -32,16 +32,17 @@ class Search extends Component {
 
     API.saveBook({
       title: this.state.books.volumeInfo.title,
-      author: this.state.books.volumeInfo.author,
+      author: this.state.books.volumeInfo.authors,
       description: this.state.books.volumeInfo.description,
       link: this.state.books.volumeInfo.infoLink,
-      image: this.state.books.volumeInfo.imageLinks.small,
+      image: this.state.books.volumeInfo.imageLinks.smallThumbnail,
       googleId: this.state.books.id
     }).then(res => console.log(res));
 
   }
 
   handleFormSubmit = (event) => {
+    console.log('This function ran.');
     event.preventDefault();
     this.searchBooks();
   }
@@ -50,8 +51,8 @@ class Search extends Component {
     console.log('test');
     API.getGoogle(this.state.title)
       .then(data => 
-        // this.setState({ books: data.data })
-        console.log(data)
+        this.setState({ books: data.data })
+        // console.log(data)
         )
         .catch(err => console.log(err))
 

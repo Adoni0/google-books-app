@@ -9,7 +9,7 @@ export default {
   getGoogle: function(q){
     return axios.get('api/google', {
       params: { q: q }
- });
+    });
   },
   viewGoogle: function(id){
     return axios.get('api/google', {

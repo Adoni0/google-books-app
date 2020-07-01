@@ -5,7 +5,8 @@ export class Navbar extends Component {
 
   navStyle = {
     background: '#fbb034',
-    background: 'linear-gradient(315deg, #fbb034 0%, #ffdd00 74%'
+    background: 'linear-gradient(315deg, #fbb034 0%, #ffdd00 74%',
+    borderBottom: 'groove'
   }
 
   render() {
