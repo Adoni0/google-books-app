@@ -4,6 +4,7 @@ import Jumbotron from '../components/Jumbotron';
 import Navbar from '../components/Navbar';
 import { List, ListItem } from '../components/List';
 // import { Link } from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Form from '../components/Form';
 import SaveBtn from '../components/SaveBtn';
 import ViewBtn from '../components/ViewBtn';
@@ -23,8 +24,6 @@ class Search extends Component {
 
 
   handleInputChange = event => {
-    // const { name, value } = event.target;
-    // this.setState({ [name]: value });
     this.setState({ title: event.target.value });
   }
 
@@ -33,10 +32,10 @@ class Search extends Component {
   //   this.saveToDatabase();
   // }
 
-  handleSave = (id) => { //click handler on the savebtn component
+  handleSave = id => { //click handler on the savebtn component
 
     this.state.books.forEach(book => {
-      if(id === book.id){
+      if (id === book.id) {
         API.saveBook({
           title: book.volumeInfo.title,
           author: book.volumeInfo.authors,
@@ -44,11 +43,12 @@ class Search extends Component {
           link: book.volumeInfo.infoLink,
           image: book.volumeInfo.imageLinks.smallThumbnail,
           googleId: book.id
-        }).then(res => console.log(res));
+        }).then(res => console.log(res))
+        .catch(err => console.log(err))
+      } else {
+        console.log("Problem Occurred");
       }
     })
-    
-    
 
   }
 
@@ -61,13 +61,15 @@ class Search extends Component {
   searchBooks = () => {
     console.log('test');
     API.getGoogle(this.state.title)
-      .then(data => 
+      .then(data =>
         this.setState({ books: data.data })
         // console.log(data)
-        )
-        .catch(err => console.log(err))
+      )
+      .catch(err => console.log(err))
 
   }
+
+
 
   render() {
     return (
@@ -84,19 +86,23 @@ class Search extends Component {
           <List>
             {this.state.books.map(book => (
               <ListItem key={book.id}
-                id={book.id}>
+                id={book.id}
+                >
+                <ViewBtn 
+                redirect={book.volumeInfo.infoLink}
+                />
+                <SaveBtn
+                  key={book.id}
+                  id={book.id}
+                  handleSave={this.handleSave}
+                />
                 <strong>
                   {book.volumeInfo.title} by {book.volumeInfo.authors}
                 </strong>
                 <img className="book-image" src={book.volumeInfo.imageLinks.smallThumbnail}></img>
-                <br/>
+                <br />
                 {book.volumeInfo.description}
-                <ViewBtn />
-                <SaveBtn
-                 key={book.id}
-                 id={book.id}
-                handleSave={this.handleSave}
-                />
+
               </ListItem>
             ))}
           </List>

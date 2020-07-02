@@ -1,11 +1,12 @@
 import React from "react";
+// import { Link } from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-// The ...props means, spread all of the passed props onto this element
-// That way we don't have to define them all individually
+
 
 function ViewBtn(props) {
   return (
-    <button style={{float: 'right'}} onClick={() => props.viewBook(props.id)} className="butn" {...props} tabIndex="0">
+    <button style={{float: 'right'}} onClick={() => (window.location = props.redirect)} className="butn" tabIndex="0">
       View
     </button>
   );

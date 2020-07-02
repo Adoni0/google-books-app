@@ -30,11 +30,11 @@ export default class Save extends Component {
             .catch(err => console.log(err));
     }
 
-    viewBook = (id) => {
-        API.viewGoogle(this.state.books.id)
-        .then(data => console.log(data))
+    // viewBook = (id) => {
+    //     API.viewGoogle(this.state.books.id)
+    //     .then(data => console.log(data))
 
-    }
+    // }
 
 
     render() {
@@ -57,7 +57,7 @@ export default class Save extends Component {
                                 <br />
                                 {book.link}
 
-                                <ViewBtn viewBook={this.viewBook}/>
+                                {/* <ViewBtn viewBook={this.viewBook}/> */}
                                 <DeleteButton deleteBook={this.deleteBook} />
                             </ListItem>
                         ))}

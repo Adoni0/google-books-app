@@ -23,7 +23,7 @@ module.exports = {
         axios.get("https://www.googleapis.com/books/v1/volumes", { body })
             .then(data => data.data.items.filter(res =>
                 res.volumeInfo.infoLink))
-            .then(result => res.redirect(result))
+            .then(result => res.json(result))
     }
 
 }
