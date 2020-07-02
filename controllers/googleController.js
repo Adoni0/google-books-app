@@ -16,14 +16,7 @@ module.exports = {
                 result.filter(apiBook =>
                     dbBooks.every(dbBook => dbBook.googleId.toString() !== apiBook.id))))
             .then(allBooks => res.json(allBooks))
-    },
-
-    findOne: function (req, res) {
-        const { id: body } = req;
-        axios.get("https://www.googleapis.com/books/v1/volumes", { body })
-            .then(data => data.data.items.filter(res =>
-                res.volumeInfo.infoLink))
-            .then(result => res.json(result))
     }
+
 
 }

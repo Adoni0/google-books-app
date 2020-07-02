@@ -1,12 +1,10 @@
 import React from "react";
 
-// The ...props means, spread all of the passed props onto this element
-// That way we don't have to define them all individually
 function DeleteButton(props) {
   return (
-    <span style={{float: 'right'}} className="delete-btn" onClick={() => props.deleteBook(props.id)} role="button" tabIndex="0">
+    <button style={{float: 'right'}} className="delete-btn" onClick={() => props.deleteBook(props.id)} tabIndex="0">
       Delete
-    </span>
+    </button>
   );
 }
 

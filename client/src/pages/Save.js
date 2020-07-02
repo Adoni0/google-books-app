@@ -30,12 +30,6 @@ export default class Save extends Component {
             .catch(err => console.log(err));
     }
 
-    // viewBook = (id) => {
-    //     API.viewGoogle(this.state.books.id)
-    //     .then(data => console.log(data))
-
-    // }
-
 
     render() {
         return (
@@ -47,18 +41,19 @@ export default class Save extends Component {
                         {this.state.books.map(book => (
                             <ListItem key={book._id}
                                 id={book._id}>
-                                <strong>
-                                    {book.title} by {book.author}
-                                </strong>
-                                <br />
-                                {book.description}
-                                <br />
-                                {book.image}
-                                <br />
-                                {book.link}
-
-                                {/* <ViewBtn viewBook={this.viewBook}/> */}
                                 <DeleteButton deleteBook={this.deleteBook} />
+                                <ViewBtn
+                                    redirect={book.volumeInfo.infoLink}
+                                />
+                                <strong>
+                                    {book.volumeInfo.title} by {book.volumeInfo.authors}
+                                </strong>
+                                <img className="book-image" src={book.volumeInfo.imageLinks.smallThumbnail}></img>
+                                <br />
+                                {book.volumeInfo.description}
+
+
+
                             </ListItem>
                         ))}
                     </List>
