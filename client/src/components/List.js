@@ -1,5 +1,9 @@
 import React from "react";
 
+const listStyle = {
+  background: "lightgrey"
+}
+
 export function List(props) {
   return (
     <div className="list-overflow-container">
@@ -9,5 +13,5 @@ export function List(props) {
 }
 
 export function ListItem(props) {
-  return <li className="list-group-item">{props.children}</li>;
+  return <li style={listStyle} className="list-group-item">{props.children}</li>;
 }

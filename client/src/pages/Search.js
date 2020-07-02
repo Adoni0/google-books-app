@@ -88,7 +88,8 @@ class Search extends Component {
                 <strong>
                   {book.volumeInfo.title} by {book.volumeInfo.authors}
                 </strong>
-                <img src={book.volumeInfo.imageLinks.smallThumbnail}></img>
+                <img className="book-image" src={book.volumeInfo.imageLinks.smallThumbnail}></img>
+                <br/>
                 {book.volumeInfo.description}
                 <ViewBtn />
                 <SaveBtn
