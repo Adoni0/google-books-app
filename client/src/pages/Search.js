@@ -33,7 +33,7 @@ class Search extends Component {
           link: book.volumeInfo.infoLink,
           image: book.volumeInfo.imageLinks.smallThumbnail,
           googleId: book.id
-        }).then(res => alert("Success! Your book was saved."))
+        }).then(res => alert("Success! " + res.data.title + " was saved."))
         .catch(err => console.log(err))
       } else {
         console.log("Problem Occurred");
