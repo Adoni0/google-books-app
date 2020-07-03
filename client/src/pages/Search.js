@@ -25,7 +25,7 @@ class Search extends Component {
 
     this.state.books.forEach(book => {
       if (id === book.id) {
-        console.log('id was found');
+        // console.log('id was found');
         API.saveBook({
           title: book.volumeInfo.title,
           author: book.volumeInfo.authors,
@@ -33,7 +33,7 @@ class Search extends Component {
           link: book.volumeInfo.infoLink,
           image: book.volumeInfo.imageLinks.smallThumbnail,
           googleId: book.id
-        }).then(res => alert("Success! " + res.data.title + " was saved."))
+        }).then(res => alert("Success! Your book was saved."))
         .catch(err => console.log(err))
       } else {
         console.log("Problem Occurred");
