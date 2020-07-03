@@ -73,6 +73,21 @@
   transition-timing-function: ease-out;
 }
 
+#delete-btn:before {
+  background: red;
+}
+
+#view-btn{
+  text-decoration: none; font: menu;
+    display: inline-block; padding: 4px 8px;
+    background: ButtonFace; color: ButtonText;
+    border-style: solid; border-width: 2px;
+    border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+}
+#view-btn:active{
+  border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
+}
+
 .butn:hover, .butn:focus, .butn:active{
   color: white;
 }

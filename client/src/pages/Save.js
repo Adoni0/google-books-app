@@ -39,18 +39,23 @@ export default class Save extends Component {
                 {this.state.books.length ? (
                     <List>
                         {this.state.books.map(book => (
-                            <ListItem key={book._id}
-                                id={book._id}>
-                                <DeleteButton deleteBook={this.deleteBook} />
+                            <ListItem
+                                key={book._id}
+                                id={book._id}
+                            >
+                                <DeleteButton
+                                    deleteBook={this.deleteBook}
+                                    id={book._id}
+                                />
                                 <ViewBtn
-                                    redirect={book.volumeInfo.infoLink}
+                                    redirect={book.link}
                                 />
                                 <strong>
-                                    {book.volumeInfo.title} by {book.volumeInfo.authors}
+                                    {book.title} by {book.author.join(', ')}
                                 </strong>
-                                <img className="book-image" src={book.volumeInfo.imageLinks.smallThumbnail}></img>
+                                <img className="book-image" src={book.image}></img>
                                 <br />
-                                {book.volumeInfo.description}
+                                {book.description}
 
 
 

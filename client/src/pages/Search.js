@@ -3,12 +3,10 @@ import API from '../utils/API';
 import Jumbotron from '../components/Jumbotron';
 import Navbar from '../components/Navbar';
 import { List, ListItem } from '../components/List';
-// import { Link } from "react-router-dom";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Form from '../components/Form';
 import SaveBtn from '../components/SaveBtn';
 import ViewBtn from '../components/ViewBtn';
-// import Save from './Save';
 // import { response } from "express";
 
 class Search extends Component {
@@ -16,10 +14,6 @@ class Search extends Component {
   state = {
     books: [],
     title: ""
-    // author: "",
-    // description: "",
-    // link: "",
-    // image: ""
   };
 
 
@@ -27,15 +21,11 @@ class Search extends Component {
     this.setState({ title: event.target.value });
   }
 
-  // handleSave = event => {
-  //   event.preventDefault();
-  //   this.saveToDatabase();
-  // }
-
   handleSave = id => { //click handler on the savebtn component
 
     this.state.books.forEach(book => {
       if (id === book.id) {
+        console.log('id was found');
         API.saveBook({
           title: book.volumeInfo.title,
           author: book.volumeInfo.authors,

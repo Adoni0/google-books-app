@@ -1,14 +1,15 @@
 import React from "react";
-// import { Link } from "react-router-dom";
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-
 
 
 function ViewBtn(props) {
   return (
-    <button style={{float: 'right'}} onClick={() => (window.location = props.redirect)} className="butn" tabIndex="0">
+    // <button style={{float: 'right'}} onClick={() => (window.location = props.redirect)} className="butn" tabIndex="0">
+    //   View
+    // </button>
+
+    <a style={{ float: 'right' }} href={props.redirect} id="view-btn" className="butn" target="_blank" tabIndex="0">
       View
-    </button>
+    </a>
   );
 }
 
